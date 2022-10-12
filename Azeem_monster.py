@@ -19,12 +19,12 @@ class Spiller:
         
 
 class Monster:
-    def __init__(self,navn,helse,styrke):
+    def __init__(self,navn,helse,styrke,penger):
         self.navn= navn
         self.helse= helse
         self.styrke= styrke
+        self.penger= penger
 
-monster1=Monster("Abdi",150,30)
 
 spiller1=Spiller("Azeem",100,50)
 
