@@ -20,11 +20,31 @@ class Spiller:
 
 class Monster:
     def __init__(self,navn,helse,styrke,penger):
-        self.navn= navn
-        self.helse= helse
-        self.styrke= styrke
-        self.penger= penger
+        self.navn= str
+        self.helse= int
+        self.styrke= int
+        self.penger= int
 
+    def skap_monster(self):
+
+        monster_liste = {
+
+            'Abdi':[100,20,5],
+            'Markus':[120,25,50]
+            'Shailesh':[80,30,100000]
+
+        }
+
+    self.navn = random.choice(list(monster_liste))
+    attributter = monster_liste.get(self.navn)
+    self.helse = attributter[0]
+    self.styrke = attributter[1]
+    self.penger = attributter[2]
+    
+
+
+
+        
 
 spiller1=Spiller("Azeem",100,50)
 
