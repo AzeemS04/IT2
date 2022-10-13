@@ -81,4 +81,8 @@ def kamp():
 
 
 
-        
+
+
+type("Hva heter du?")
+name = input(":")
+spiller = Spiller(name,100,10,0)
