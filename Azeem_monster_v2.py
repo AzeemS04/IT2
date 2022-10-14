@@ -4,6 +4,9 @@ import os
 import sys, time
 from typing import Type
 
+#termcolor
+#playsoundxxxxx
+
 def type(t):
     typing_speed = 500 #wpm
     for l in t:
