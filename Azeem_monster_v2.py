@@ -21,26 +21,36 @@ class Player:
 
 
 class Monster:
-    def __init__(self,name,health,strength,reward):
-        self.name=name
-        self.health=health
-        self.strength=strength
-        self.reward=reward
+    def __init__(self):
+        self.name=str
+        self.health=int
+        self.strength=int
+        self.reward=int
 
-monster1=Monster("Devil",80,100,15)
-#lage en metode inne i Monster klassen som lager monster random"
+    def spawn(self):
+        monster_dict= {
+            'Demon':[100,15,10],
+            'Goblin':[50,10,5],
+            'Devil':[200,20,40]
+        }
+        self.name=random.choice(list(monster_dict))
+        ferdigheter=monster_dict.get(self.name)
+        self.health=ferdigheter[0]
+        self.strength=ferdigheter[1]
+        self.reward=ferdigheter[2]
+
 
 
 def kamp():
-    type("Du møter på et monster\n")
-    type(f'{monster1.name} har {monster1.health} hp\n')
-    type(f'Du har {spiller.health} hp\n')
 
+    monster=Monster()
+    monster.spawn()
+    type(f"Du møter på {monster.name}\nMonsteret har {monster.health}hp")
     while True:
-        if monster1.health <= 0:
+        if monster.health <= 0:
             type("Monsteret har blitt bekjempet\n")
-            spiller.wallet += monster1.reward
-            type(f'Du har tjent {monster1.reward}\n' )
+            spiller.wallet += monster.reward
+            type(f'Du har tjent {monster.reward}\n' )
             type(f'Nå har du {spiller.wallet} kr\n')
             break
         elif spiller.health <= 0:
@@ -56,12 +66,12 @@ def kamp():
         bruker_input=input(":")
         if bruker_input == "fight":
             type("Du slo monsteret\n")
-            monster1.health -= spiller.strength
-            spiller.health -= monster1.strength
-            if monster1.health<=0:
+            monster.health -= spiller.strength
+            spiller.health -= monster.strength
+            if monster.health<=0:
                 pass
             else:
-                type(f'Du har {spiller.health}hp\nMonsteret har {monster1.health} hp igjen\n')
+                type(f'Du har {spiller.health}hp\nMonsteret har {monster.health} hp igjen\n')
 
         elif bruker_input == "run":
             type("Du rømte fra monsteret, du får ingenting i premie\n")
