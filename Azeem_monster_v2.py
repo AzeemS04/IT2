@@ -45,7 +45,7 @@ def kamp():
 
     monster=Monster()
     monster.spawn()
-    type(f"Du møter på {monster.name}\nMonsteret har {monster.health}hp")
+    type(f"Du møter på {monster.name} \n Monsteret har {monster.health}hp\n")
     while True:
         if monster.health <= 0:
             type("Monsteret har blitt bekjempet\n")
