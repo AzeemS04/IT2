@@ -27,7 +27,7 @@ class Monster:
         self.strength=strength
         self.reward=reward
 
-monster1=Monster("Devil",80,5,15)
+monster1=Monster("Devil",80,100,15)
 #lage en metode inne i Monster klassen som lager monster random"
 
 
@@ -43,6 +43,14 @@ def kamp():
             type(f'Du har tjent {monster1.reward}\n' )
             type(f'Nå har du {spiller.wallet} kr\n')
             break
+        elif spiller.health <= 0:
+            type("Du døde \n")
+            type("Du mistet alle pengene dine\n")
+            type("Du vil nå respawne\n")
+            spiller.wallet = 0
+            spiller.health=100
+            break
+            
         type("Hva vil du gjøre\n")
         type("Slåss[fight] eller løpe bort[run]\n")
         bruker_input=input(":")
@@ -61,17 +69,7 @@ def kamp():
         else:
             type("Velg et ordentlig alternativ\n")
 
-"""    type("Hva vil du gjøre\n")
-    type("Slåss[fight] eller løpe bort[run]")
-    bruker_input=input(":")
-    handlinger=["fight","run"]
-    if bruker_input == "fight":
-        type("Du angrep monsteret")
-        monster1.health -= spiller.strength
-        type(f'Monsteret ble skadet.\n Monsteret har {monster1.health} hp igjen')
-    else:
-        type("Skriv et gyldig valg\n")
-        type("Slåss[fight] eller løpe bort[run]\n")"""
+
 
 
 def spill():
