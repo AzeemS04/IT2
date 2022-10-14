@@ -2,6 +2,7 @@ from mimetypes import init
 import random
 import os
 import sys, time
+from typing import Type
 
 def type(t):
     typing_speed = 500 #wpm
@@ -45,7 +46,7 @@ def kamp():
 
     monster=Monster()
     monster.spawn()
-    type(f"Du møter på {monster.name} \n Monsteret har {monster.health}hp\n")
+    type(f"Du møter på {monster.name} \nMonsteret har {monster.health}hp\n")
     while True:
         if monster.health <= 0:
             type("Monsteret har blitt bekjempet\n")
@@ -79,7 +80,37 @@ def kamp():
         else:
             type("Velg et ordentlig alternativ\n")
 
-
+def butikk():
+    type("Velkommen til butikken\n Her får du kjøpt våpen og drikker\n")
+    type("Sting : 15kr (+30hp,+15styrke)")
+    type("\nKebab : 30kr (+50hp)")
+    type("Hva vil du ha\n")
+    type("[sting], [kebab], [tilbake]")
+    while True:
+        valg=input(":")
+        if valg=="sting":
+            if spiller.wallet>=15:
+                spiller.wallet -= 15
+                type("Du kjøpte Sting\n")
+                spiller.health+=30
+                spiller.strength+=15
+                type(f'Du har {spiller.health}hp og styrke {spiller.strength}')
+                type(f'Du har {spiller.wallet}kr igjen')
+            else:
+                type("Du har ikke råd\n")
+                pass
+        elif valg=="kebab":
+            if spiller.wallet >=50:
+                spiller.wallet -=50
+                type("Du kjøpte kebab\n")
+                spiller.health +=50
+                type(f'Du har {spiller.health}hp og styrke {spiller.strength}')
+                type(f'Du har {spiller.wallet}kr igjen')
+            else:
+                type("Du har ikke råd\n")
+                pass
+        elif valg=="tilbake":
+            break
 
 
 def spill():
