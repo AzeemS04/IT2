@@ -12,17 +12,9 @@ vindu= pygame.display.set_mode([vindu_bredde,vindu_hoyde])
 
 font = pygame.font.SysFont("Sora", 24)
 
+FPS = 60 # frames per second setting
+fpsClock = pygame.time.Clock()
     
-
-# def finnavstand(self,ball2):
-#     xAvstand2=(self.x - ball2.x)**2
-#     yAvstand2=(self.y - ball2.y)**2
-#     sentrumAvstand=m.sqrt(xAvstand2 + yAvstand2)
-
-#     radiuser= self.radius + ball2.radius
-#     avstand= sentrumAvstand -radiuser
-
-#     return avstand
 
 
 class Ball:
@@ -49,6 +41,8 @@ class Hinder(Ball):
         if ((self.y - self.radius) <= 0) or ((self.y + self.radius) >= self.vindusobjekt.get_height()):
             self.yFart = -self.yFart
 
+        
+
         self.x += self.xFart
         self.y += self.yFart
 
@@ -74,13 +68,14 @@ class Spiller:
         if taster[K_RIGHT]:
             self.x1 += self.fart
             self.x2 += self.fart
-            
+    
+
 
         
 
-hinder1 = Hinder(100, 100, 20, (0, 0, 255), vindu, 2.5, 1.5)
+hinder1 = Hinder(100, 100, 20, (0, 0, 255), vindu, 3.5, 4.5)
 
-spiller1=Spiller(300,600,500,600,(255,255,255),vindu,2,5)
+spiller1=Spiller(300,600,500,600,(255,255,255),vindu,4,15)
 
 fortsett=True
 
@@ -100,8 +95,18 @@ while fortsett:
     spiller1.tegn()
     spiller1.flytt(trykkede_taster)
 
+    if hinder1.x>=spiller1.x1 and hinder1.x<=spiller1.x2 and hinder1.y+20>=spiller1.y1:
+        hinder1.yFart = -hinder1.yFart
+
+
+
+    if hinder1.y>700:
+        fortsett = False
+
    # print(finnavstand(spiller1,hinder1))
+    print(spiller1.x1,spiller1.x2,"     ", hinder1.x,hinder1.y)
     pygame.display.flip()
+    fpsClock.tick(FPS)
 
 pygame.quit()
  
