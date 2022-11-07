@@ -82,6 +82,9 @@ class Spiller:
         
 
 hinder1 = Hinder(100, 100, 20, (0, 0, 255), vindu, 3.5, 4.5)
+hinder2=Hinder(100, 100, 20, (0, 0, 255), vindu, 3, 5.5)
+
+
 
 spiller1=Spiller(300,600,500,600,(255,255,255),vindu,4,15)
 
@@ -103,15 +106,20 @@ while fortsett:
     spiller1.tegn()
     spiller1.flytt(trykkede_taster)
 
+    hinder2.tegn()
+    hinder2.flytt()
+
     if hinder1.x>=spiller1.x1 and hinder1.x<=spiller1.x2 and hinder1.y+20>=spiller1.y1:
         hinder1.yFart = -hinder1.yFart
-        # hinder2=Hinder(100, 100, 20, (0, 0, 255), vindu, 3.5, 4.5)
-        # hinder2.tegn()
-        # hinder2.flytt()
 
+
+    if hinder2.x>=spiller1.x1 and hinder2.x<=spiller1.x2 and hinder2.y+20>=spiller1.y1:
+        hinder2.yFart = -hinder2.yFart
 
 
     if hinder1.y>700:
+        fortsett = False
+    if hinder2.y>700:
         fortsett = False
 
    # print(finnavstand(spiller1,hinder1))
