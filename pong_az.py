@@ -4,7 +4,7 @@ from pygame.locals import (K_UP, K_DOWN, K_LEFT, K_RIGHT)
 
 
 vindu_bredde= 800
-vindu_hoyde=800
+vindu_hoyde= 800
 
 pygame.init()
 
@@ -63,11 +63,19 @@ class Spiller:
 
     def flytt(self,taster):
         if taster[K_LEFT]:
-            self.x1 -= self.fart
-            self.x2 -= self.fart
+            if self.x1<=0:
+                self.x1=0
+                self.x2=200
+            else:
+                self.x1 -= self.fart
+                self.x2 -= self.fart
         if taster[K_RIGHT]:
-            self.x1 += self.fart
-            self.x2 += self.fart
+            if self.x1>=600:
+                self.x1=600
+                self.x2=800
+            else:
+                self.x1 += self.fart
+                self.x2 += self.fart
     
 
 
@@ -97,6 +105,9 @@ while fortsett:
 
     if hinder1.x>=spiller1.x1 and hinder1.x<=spiller1.x2 and hinder1.y+20>=spiller1.y1:
         hinder1.yFart = -hinder1.yFart
+        # hinder2=Hinder(100, 100, 20, (0, 0, 255), vindu, 3.5, 4.5)
+        # hinder2.tegn()
+        # hinder2.flytt()
 
 
 
