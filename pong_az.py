@@ -4,7 +4,7 @@ from pygame.locals import (K_UP, K_DOWN, K_LEFT, K_RIGHT)
 
 
 vindu_bredde= 800
-vindu_hoyde= 800
+vindu_hoyde= 800 
 
 pygame.init()
 
@@ -86,7 +86,7 @@ hinder2=Hinder(100, 100, 20, (0, 0, 255), vindu, 3, 5.5)
 
 
 
-spiller1=Spiller(300,600,500,600,(255,255,255),vindu,4,15)
+spiller1=Spiller(300,600,500,600,(255,255,255),vindu,10,15)
 
 fortsett=True
 
