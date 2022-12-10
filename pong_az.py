@@ -1,10 +1,14 @@
+# Importerer bibliotekene som trengs for filen
+
 import pygame
 import math as m
 from pygame.locals import (K_UP, K_DOWN, K_LEFT, K_RIGHT)
 
-
+#Definerer vindusbredden
 vindu_bredde= 800
 vindu_hoyde= 800 
+
+
 
 pygame.init()
 
@@ -15,7 +19,6 @@ font = pygame.font.SysFont("Sora", 24)
 FPS = 60 # frames per second setting
 fpsClock = pygame.time.Clock()
     
-
 
 class Ball:
     def __init__(self,x,y,radius,farge,vindusobjekt):
