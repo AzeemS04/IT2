@@ -1,12 +1,11 @@
+#Importerer bibliotekene man trenger til spillet
 from mimetypes import init
 import random
 import os
 import sys, time
 from typing import Type
 
-#termcolor
-#playsoundxxxxx
-
+#Funksjon som gir deg skrivemaskin effekt
 def type(t):
     typing_speed = 500 #wpm
     for l in t:
@@ -15,6 +14,7 @@ def type(t):
         time.sleep(random.random()*10.0/typing_speed)
 
 
+#Definerer klassen spiller
 class Player:
     def __init__(self,name,health,strength,wallet = 0):
         self.name=name
@@ -23,7 +23,7 @@ class Player:
         self.wallet=wallet
 
 
-
+#Definerer Monster klassen
 class Monster:
     def __init__(self):
         self.name=str
@@ -31,6 +31,7 @@ class Monster:
         self.strength=int
         self.reward=int
 
+    #Metode som gir mulighet til å kunne velge et tilfedlig monster når du lager et objekt
     def spawn(self):
         monster_dict= {
             'Demon':[100,15,10],
@@ -44,12 +45,13 @@ class Monster:
         self.reward=ferdigheter[2]
 
 
-
+#Funksjon som styrer kamp-aspektet av spillet
 def kamp():
-
+    #spawner monster
     monster=Monster()
     monster.spawn()
     type(f"Du møter på {monster.name} \nMonsteret har {monster.health}hp\n")
+    #Løkke som sjekker som kjører imens enten monsteret har blitt beseiret eller spilleren dør
     while True:
         if monster.health <= 0:
             type("Monsteret har blitt bekjempet\n")
@@ -83,6 +85,8 @@ def kamp():
         else:
             type("Velg et ordentlig alternativ\n")
 
+     
+#Funksjon som styrer butikken i spillet
 def butikk():
     type("Velkommen til butikken\n Her får du kjøpt våpen og drikker\n")
     type("Sting : 15kr (+30hp,+15styrke)")
@@ -115,7 +119,7 @@ def butikk():
         elif valg=="tilbake":
             break
 
-
+#Funksjon hvor spiller velger hva han vil gjøre.
 def spill():
     type("Hva vil du gjøre? \n")
     type("Vil du utforske[utforske], sjekke lommene dine[inventory] eller kjøpe noe fra butikken[butikk]\n")
@@ -142,6 +146,7 @@ type("Hva heter du")
 navn_input=input(": ")
 spiller=Player(navn_input,100,50)
 
+#Løkken som får spillet til å gå.
 while (True):
     spill()
 
