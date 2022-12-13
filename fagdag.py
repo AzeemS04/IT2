@@ -1,6 +1,5 @@
 
 
-
 class Vare:
     def __init__(self,kategori,underkategori,pristype,pris,mengde):
         self.kategori=kategori
@@ -13,12 +12,8 @@ class Vare:
         return self.mengde * self.pris
 
 
-
-
-
-
 def handle():
-    totalsum=0
+
     print("Hva vil du kjøpe?")
     print("epler (Pink) koster 20 kr pr kg")
     print("appelsiner (Jaffa) koster 25 kr pr kg")
@@ -32,29 +27,35 @@ def handle():
         print("Hvor mye skal du ha? Oppgi i heltall")
         mengde=int(input(": "))
         vare1= Vare("epler","pink","pr kg",20,mengde)
-        totalsum = totalsum + vare1.prisBetale()
+
         print("Prisen å betale er", vare1.prisBetale())
+        return vare1.prisBetale()
     elif valg == "appelsiner":
         print("Hvor mye skal du ha? Oppgi i heltall")
         mengde=int(input(": "))
         vare1= Vare("appelsiner","jaffa","pr kg",25,mengde)
-        totalsum = totalsum + vare1.prisBetale()
+
         print("Prisen å betale er", vare1.prisBetale())
+        return vare1.prisBetale()
     elif valg == "ananas":
         print("Hvor mye skal du ha? Oppgi i heltall")
         mengde=int(input(": "))
         vare1= Vare("ananas","hel","pr stk",15,mengde)
-        totalsum = totalsum + vare1.prisBetale()
+        
         print("Prisen å betale er", vare1.prisBetale())
+        return vare1.prisBetale()
     elif valg == "ferdig":
         print(f'Totalsummen din ble {totalsum}')
         return False
 
 
 
-
+totalsum=0
 while(True):
-    if handle() == False:
+    handling=handle()
+    if handling == False:
         break
     else:
+        totalsum += handling
+        print(totalsum)
         continue
