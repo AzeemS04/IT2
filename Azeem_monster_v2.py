@@ -34,9 +34,9 @@ class Monster:
     #Metode som gir mulighet til å kunne velge et tilfedlig monster når du lager et objekt
     def spawn(self):
         monster_dict= {
-            'Demon':[100,15,10],
-            'Goblin':[50,10,5],
-            'Devil':[200,20,40]
+            'Demon':[100,45,50],
+            'Goblin':[50,50,55],
+            'Devil':[200,50,50]
         }
         self.name=random.choice(list(monster_dict))
         ferdigheter=monster_dict.get(self.name)
@@ -56,7 +56,7 @@ def kamp():
         if monster.health <= 0:
             type("Monsteret har blitt bekjempet\n")
             spiller.wallet += monster.reward
-            type(f'Du har tjent {monster.reward}\n' )
+            type(f'Du har tjent {monster.reward} kr\n' )
             type(f'Nå har du {spiller.wallet} kr\n')
             break
         elif spiller.health <= 0:
@@ -89,8 +89,9 @@ def kamp():
 #Funksjon som styrer butikken i spillet
 def butikk():
     type("Velkommen til butikken\n Her får du kjøpt våpen og drikker\n")
+    type(f'Du har {spiller.wallet} kr \n')
     type("Sting : 15kr (+30hp,+15styrke)")
-    type("\nKebab : 30kr (+50hp)")
+    type("\nKebab : 50kr (+150hp)\n")
     type("Hva vil du ha\n")
     type("[sting], [kebab], [tilbake]")
     while True:
@@ -103,8 +104,12 @@ def butikk():
                 spiller.strength+=15
                 type(f'Du har {spiller.health}hp og styrke {spiller.strength}')
                 type(f'Du har {spiller.wallet}kr igjen')
+                type("\nHva vil du ha\n")
+                type("\n[sting], [kebab], [tilbake]\n")
             else:
                 type("Du har ikke råd\n")
+                type("\nHva vil du ha\n")
+                type("\n[sting], [kebab], [tilbake]\n")
                 pass
         elif valg=="kebab":
             if spiller.wallet >=50:
@@ -113,11 +118,19 @@ def butikk():
                 spiller.health +=50
                 type(f'Du har {spiller.health}hp og styrke {spiller.strength}')
                 type(f'Du har {spiller.wallet}kr igjen')
+                type("\nHva vil du ha\n")
+                type("\n[sting], [kebab], [tilbake]\n")
             else:
                 type("Du har ikke råd\n")
+                type("\nHva vil du ha\n")
+                type("\n[sting], [kebab], [tilbake]\n")
                 pass
         elif valg=="tilbake":
             break
+
+def inventory():
+    type(f'Inventory til spilleren {spiller.name}')
+    type(f'Helsen din er {spiller.health} hp')
 
 #Funksjon hvor spiller velger hva han vil gjøre.
 def spill():
