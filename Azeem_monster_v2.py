@@ -73,11 +73,14 @@ def kamp():
         if bruker_input == "fight":
             type("Du slo monsteret\n")
             monster.health -= spiller.strength
-            spiller.health -= monster.strength
             if monster.health<=0:
                 pass
             else:
-                type(f'Du har {spiller.health}hp\nMonsteret har {monster.health} hp igjen\n')
+                spiller.health -= monster.strength
+                if spiller.health <= 0:
+                    type(f'Du har 0 hp\nMonsteret har {monster.health} hp igjen\n')
+                else:
+                    type(f'Du har {spiller.health}hp\nMonsteret har {monster.health} hp igjen\n')
 
         elif bruker_input == "run":
             type("Du rømte fra monsteret, du får ingenting i premie\n")
@@ -92,9 +95,9 @@ def butikk():
     type(f'Du har {spiller.wallet} kr \n')
     type("Sting : 15kr (+30hp,+15styrke)")
     type("\nKebab : 50kr (+150hp)\n")
-    type("Hva vil du ha\n")
-    type("[sting], [kebab], [tilbake]")
-    while True:
+    while True:             #Løkke som kjører frem til du er ferdig i butikken
+        type("Hva vil du ha\n")
+        type("[sting], [kebab], [tilbake]")
         valg=input(":")
         if valg=="sting":
             if spiller.wallet>=15:
@@ -102,35 +105,41 @@ def butikk():
                 type("Du kjøpte Sting\n")
                 spiller.health+=30
                 spiller.strength+=15
-                type(f'Du har {spiller.health}hp og styrke {spiller.strength}')
+                type(f'Du har {spiller.health}hp og styrke {spiller.strength}\n')
                 type(f'Du har {spiller.wallet}kr igjen')
-                type("\nHva vil du ha\n")
-                type("\n[sting], [kebab], [tilbake]\n")
             else:
                 type("Du har ikke råd\n")
-                type("\nHva vil du ha\n")
-                type("\n[sting], [kebab], [tilbake]\n")
                 pass
         elif valg=="kebab":
             if spiller.wallet >=50:
                 spiller.wallet -=50
                 type("Du kjøpte kebab\n")
-                spiller.health +=50
+                spiller.health +=150
                 type(f'Du har {spiller.health}hp og styrke {spiller.strength}')
                 type(f'Du har {spiller.wallet}kr igjen')
-                type("\nHva vil du ha\n")
-                type("\n[sting], [kebab], [tilbake]\n")
             else:
                 type("Du har ikke råd\n")
-                type("\nHva vil du ha\n")
-                type("\n[sting], [kebab], [tilbake]\n")
                 pass
         elif valg=="tilbake":
             break
 
+#Funksjon som viser inventaret til spiller
 def inventory():
-    type(f'Inventory til spilleren {spiller.name}')
-    type(f'Helsen din er {spiller.health} hp')
+    type(f'Inventory til spilleren {spiller.name}\n')
+    while True:
+        type("Hva vil du se?\n")
+        type("Lommebok[wallet] , Helse[health], Tilbake[Tilbake]\n ")
+        user_choice= input(":")
+        if user_choice == "wallet":
+            type(f'Lommeboken til {spiller.name}\n')
+            type(f'Du har {spiller.wallet} kr\n')
+        elif user_choice =="health":
+            type(f'Helsen til {spiller.name} er {spiller.health}\n')
+        elif user_choice == "tilbake":
+            break
+
+
+
 
 #Funksjon hvor spiller velger hva han vil gjøre.
 def spill():
