@@ -51,7 +51,7 @@ def kamp():
     monster=Monster()
     monster.spawn()
     type(f"Du møter på {monster.name} \nMonsteret har {monster.health}hp\n")
-    #Løkke som sjekker som kjører imens enten monsteret har blitt beseiret eller spilleren dør
+    #Løkke som kjører til enten monsteret har blitt beseiret eller spilleren dør/løper bort
     while True:
         if monster.health <= 0:
             type("Monsteret har blitt bekjempet\n")
