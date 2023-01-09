@@ -1,0 +1,68 @@
+class Vare:
+    def __init__(self,kategori,underkategori,pristype,pris,mengde):
+        self.kategori=kategori
+        self.underkategori=underkategori
+        self.pristype=pristype
+        self.pris=pris
+        self.mengde=mengde
+
+    def prisBetale(self):
+        return self.pris*self.mengde
+
+
+
+eple=Vare("epler","pink","pr kg",20,0)
+appelsin=Vare("appelsiner","jaffa","pr kg",25,0)
+ananas=Vare("ananas","hel","pr stk",15,0)
+
+varer=[eple,appelsin,ananas]
+
+
+while True:
+    print("Skriv om du vil ha epler,appelsiner eller ananas")
+    print("Skriv ferdig om du er ferdig")
+    print(f'epler koster {eple.pris}, appelsiner koster {appelsin.pris} og ananas koster {ananas.pris}')
+    typeVare=input(": ")
+    if typeVare=="epler":
+        while True:
+            print("Hvor mange epler?")
+            mengdeVare=input(": ")
+            try:
+                int(mengdeVare)
+                break
+            except ValueError:
+                print("Skriv et heltall")
+        eple.mengde += int(mengdeVare)
+
+    elif typeVare=="appelsiner":
+        while True:
+            print("Hvor mange appelsiner?")
+            mengdeVare=input(": ")
+            try:
+                int(mengdeVare)
+                break
+            except ValueError:
+                print("Skriv et heltall")
+        appelsin.mengde+=int(mengdeVare)
+    elif typeVare=="ananas":
+        while True:
+            print("Hvor mange ananas?")
+            mengdeVare=input(": ")
+            try:
+                int(mengdeVare)
+                break
+            except ValueError:
+                print("Skriv et heltall")
+        ananas.mengde+=int(mengdeVare)
+    elif typeVare == "ferdig":
+        break
+    else:
+        print("Skriv et gyldig valg")
+
+sum=0
+for item in varer:
+    if item.mengde != 0:
+        print(f'For vare {item.kategori} må du betale {item.prisBetale()}')
+        sum += item.prisBetale()
+
+print(f'Totalt må du betale {sum}')
